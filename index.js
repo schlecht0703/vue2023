@@ -39,7 +39,7 @@ const app = Vue.createApp({
             this.tempProduct = this.products.find(item => item.id === id);
         },
         showImage(id){
-            this.tempProduct.imageUrl = this.tempProduct.imagesUrl[id]
+            this.tempProduct.imageUrl = this.tempProduct.imageUrl[id]
         },
     
   mounted() {
