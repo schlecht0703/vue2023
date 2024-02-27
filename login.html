@@ -9,7 +9,7 @@
 			integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
 			crossorigin="anonymous"
 		/>
-		<title>Document</title>
+		<title>week3</title>
 	</head>
 	<body>
 		<div id="app">
@@ -25,7 +25,7 @@
 									placeholder="name@example.com"
 									required
 									autofocus
-									v-model="temp.username"
+									v-model="user.username"
 								/>
 								<label for="username">Email address</label>
 							</div>
@@ -36,7 +36,7 @@
 									id="password"
 									placeholder="Password"
 									required
-									v-model="temp.password"
+									v-model="user.password"
 								/>
 								<label for="password">Password</label>
 							</div>
@@ -59,7 +59,10 @@
 			const app = createApp({
 				data() {
 					return {
-						temp: {},
+						user: {
+							username: "",
+							password: "",
+						},
 						api: {
 							url: "https://vue3-course-api.hexschool.io/v2",
 							api_path: "schlecht0703",
@@ -69,13 +72,14 @@
 				methods: {
 					signIn() {
 						axios
-							.post(`${this.api.url}/admin/signin`, this.temp)
+							.post(`${this.api.url}/admin/signin`, this.user)
 							.then((res) => {
 								const { token, expired } = res.data;
 
 								document.cookie = `myToken=${token}; expires=${new Date(
 									expired
 								)};`;
+
 								window.location = "index.html";
 							})
 							.catch((err) => {
